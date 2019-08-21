@@ -19,9 +19,38 @@ namespace Senai.Filmes.WebApi.Controllers {
 
 
         [HttpGet]
-        public IEnumerable<GeneroDomain> Get() {
-            
+        public IEnumerable<GeneroDomain> ListarTodos() {
+
             return generoRepository.Listar();
+        }
+
+        [HttpGet("{id}")]
+        public IActionResult BuscarPorId(int id) {
+            GeneroDomain genero = generoRepository.BuscarPorId(id);
+            if(genero == null) {
+                return NotFound();
             }
+            return Ok(genero);
+        }
+
+        [HttpPost]
+        public IActionResult Cadastrar(GeneroDomain genero) {
+            generoRepository.Cadastrar(genero);
+            return Ok();
+
+        }
+
+        [HttpPut("{id}")]
+        public IActionResult Atualizar(GeneroDomain genero) {
+            generoRepository.Atualizar(genero);
+            return Ok();
+        }
+
+        [HttpDelete]
+        public IActionResult Deletar(GeneroDomain genero) {
+            generoRepository.Deletar(genero);
+            return Ok();
+        }
+
     }
 }
