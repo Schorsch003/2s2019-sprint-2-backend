@@ -11,7 +11,7 @@ using Microsoft.Extensions.Logging;
 namespace T_People {
     public class Program {
         public static void Main(string[] args) {
-            CreateWebHostBuilder(args).Build().Run();
+          CreateWebHostBuilder(args).Build().Run();
         }
 
         public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>

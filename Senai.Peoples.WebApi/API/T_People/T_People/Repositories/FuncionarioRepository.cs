@@ -21,21 +21,51 @@ namespace T_People.Repositories {
                     sdr = cmd.ExecuteReader();
                     if (sdr.HasRows) {
                         while (sdr.Read()) {
+                            DateTime data = DateTime.Parse(sdr["DataNascimento"].ToString());
                             FuncionarioDomain func = new FuncionarioDomain {
                                 IdFuncionario = Convert.ToInt32(sdr["IdFuncionario"]),
                                 Nome = sdr["Nome"].ToString(),
-                                Sobrenome = sdr["Sobrenome"].ToString()
+                                Sobrenome = sdr["Sobrenome"].ToString(),
+                                DataNascimento = DateTime.Parse(data.ToShortDateString())
+
                             };
                             listaFuncionarios.Add(func);
                         }
                     }
                 }
             }
-
             return listaFuncionarios;
         }
 
+        public List<FuncionarioDomain> NomesCompletos() {
+            List<FuncionarioDomain> listaFuncionarios = new List<FuncionarioDomain>();
+            string Query = "Select * From Funcionarios";
+            SqlDataReader sdr;
+            using (SqlConnection con = new SqlConnection(Conexao)) {
+                using (SqlCommand cmd = new SqlCommand(Query, con)) {
+                    con.Open();
+                    sdr = cmd.ExecuteReader();
+                    if (sdr.HasRows) {
+                        while (sdr.Read()) {
+                            DateTime data = DateTime.Parse(sdr["DataNascimento"].ToString());
+                            FuncionarioDomain func = new FuncionarioDomain {
+                                IdFuncionario = Convert.ToInt32(sdr["IdFuncionario"]),
+                                Nome = sdr["Nome"].ToString(),
+                                Sobrenome = sdr["Sobrenome"].ToString(),
+                                NomeCompleto = sdr["Nome"].ToString() + " " + sdr["Sobrenome"].ToString(),
+                                DataNascimento = DateTime.Parse(data.ToShortDateString())
+
+                            };
+                            listaFuncionarios.Add(func);
+                        }
+                    }
+                }
+                return listaFuncionarios;
+            }
+        }
+
         public FuncionarioDomain BuscarPorId(int id) {
+
 
             string Query = "Select * From Funcionarios Where IdFuncionario = @Id";
             SqlDataReader sdr;
@@ -59,13 +89,38 @@ namespace T_People.Repositories {
             return null;
         }
 
+        public FuncionarioDomain BuscarPorNome(string nome) {
+
+            string Query = "Select * From Funcionarios Where Nome = @Id";
+            SqlDataReader sdr;
+            using (SqlConnection con = new SqlConnection(Conexao)) {
+                using (SqlCommand cmd = new SqlCommand(Query, con)) {
+                    cmd.Parameters.AddWithValue("@Id", nome);
+                    con.Open();
+                    sdr = cmd.ExecuteReader();
+                    if (sdr.HasRows) {
+                        while (sdr.Read()) {
+                            FuncionarioDomain func = new FuncionarioDomain {
+                                IdFuncionario = Convert.ToInt32(sdr["IdFuncionario"]),
+                                Nome = sdr["Nome"].ToString(),
+                                Sobrenome = sdr["Sobrenome"].ToString()
+                            };
+                            return func;
+                        }
+                    }
+                }
+            }
+            return null;
+        }
+
         public void Cadastrar(FuncionarioDomain funcionario) {
-            string Query = "Insert into Funcionarios (Nome,Sobrenome) Values (@Nome,@Sobrenome)";
+            string Query = "Insert into Funcionarios (Nome,Sobrenome,DataNascimento) Values (@Nome,@Sobrenome,@DataNascimento)";
 
             using (SqlConnection con = new SqlConnection(Conexao)) {
-                using(SqlCommand cmd = new SqlCommand(Query, con)) {
+                using (SqlCommand cmd = new SqlCommand(Query, con)) {
                     cmd.Parameters.AddWithValue("@Nome", funcionario.Nome);
                     cmd.Parameters.AddWithValue("@Sobrenome", funcionario.Sobrenome);
+                    cmd.Parameters.AddWithValue("@DataNascimento", funcionario.DataNascimento);
                     con.Open();
                     cmd.ExecuteNonQuery();
                 }
@@ -93,8 +148,8 @@ namespace T_People.Repositories {
         public void Deletar(FuncionarioDomain funcionario) {
             string Query = "Delete From Funcionarios Where IdFuncionario = @Id";
 
-            using(SqlConnection con = new SqlConnection(Conexao)) {
-                using(SqlCommand cmd = new SqlCommand(Query, con)) {
+            using (SqlConnection con = new SqlConnection(Conexao)) {
+                using (SqlCommand cmd = new SqlCommand(Query, con)) {
                     con.Open();
                     cmd.Parameters.AddWithValue("@Id", funcionario.IdFuncionario);
                     cmd.ExecuteNonQuery();
@@ -102,6 +157,45 @@ namespace T_People.Repositories {
             }
         }
 
-        public 
+        public List<FuncionarioDomain> ListarPorOrder(string ordem, out bool ordemCerta) {
+            var listaFuncionarios = new List<FuncionarioDomain>();
+            string QueryAsc = "Select * From Funcionarios Order By Nome asc";
+            string QueryDesc = "Select * From Funcionarios Order By Nome desc";
+
+            SqlDataReader sdr;
+            using (SqlConnection con = new SqlConnection(Conexao)) {
+
+                SqlCommand cmd; 
+                    if (ordem.Equals("asc")) {
+                    cmd = new SqlCommand(QueryAsc, con);
+                    ordemCerta = true;
+                    } else if (ordem.Equals("desc")) {
+                    cmd = new SqlCommand(QueryDesc, con);
+                    ordemCerta = true;
+                    } else {
+                    cmd = new SqlCommand(QueryAsc, con);
+                    ordemCerta = false;
+                    }
+
+                    con.Open();
+
+                    sdr = cmd.ExecuteReader();
+                    if (sdr.HasRows) {
+                        while (sdr.Read()) {
+                            DateTime data = DateTime.Parse(sdr["DataNascimento"].ToString());
+                            FuncionarioDomain func = new FuncionarioDomain {
+                                IdFuncionario = Convert.ToInt32(sdr["IdFuncionario"]),
+                                Nome = sdr["Nome"].ToString(),
+                                Sobrenome = sdr["Sobrenome"].ToString(),
+                                DataNascimento = DateTime.Parse(data.ToShortDateString())
+
+                            };
+                            listaFuncionarios.Add(func);
+                        }
+                    }
+                
+                return listaFuncionarios;
+            }
+        }
     }
 }
