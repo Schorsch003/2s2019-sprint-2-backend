@@ -52,5 +52,9 @@ namespace Senai.Filmes.WebApi.Controllers {
             return Ok();
         }
 
+        [HttpGet("{id}/filmes")]
+        public IEnumerable<FilmesDomain> FilmesPorGenero(int id) {
+            return generoRepository.FilmesPorGenero(id);
+        }
     }
 }

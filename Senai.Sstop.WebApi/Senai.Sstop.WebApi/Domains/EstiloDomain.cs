@@ -4,10 +4,11 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Senai.Filmes.WebApi.Domains {
-    public class GeneroDomain {
-        public int IdGenero { get; set; }
-        [Required(ErrorMessage ="O Nome do Gênero é obrigatório")]
+namespace Senai.Sstop.WebApi.Domains {
+    public class EstiloDomain {
+        public int IdEstilo{ get; set; }
+        [Required(ErrorMessage = "O nome do estilo é obrigatório.")]
         public string Nome { get; set; }
+
     }
 }
