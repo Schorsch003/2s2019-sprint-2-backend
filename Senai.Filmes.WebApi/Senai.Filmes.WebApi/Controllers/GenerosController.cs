@@ -40,7 +40,7 @@ namespace Senai.Filmes.WebApi.Controllers {
 
         }
 
-        [HttpPut("{id}")]
+        [HttpPut]
         public IActionResult Atualizar(GeneroDomain genero) {
             generoRepository.Atualizar(genero);
             return Ok();
