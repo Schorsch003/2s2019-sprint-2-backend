@@ -42,8 +42,8 @@ namespace Senai.BookStore.WebApi.Repositories {
         public List<LivroDomain> BuscarLivrosPorGenero(string nome)
         {
             List<LivroDomain> lista = new List<LivroDomain>();
-            string Query = "Select L.IdLivro,L.Titulo,L.IdAutor,L.IdGenero, A.Nome,A.Email,A.Ativo,A.DataNascimento, G.Descricao" +
-            "From Livros L join Autores A on A.IdAutor = L.IdAutor join Generos G on G.IdGenero = L.IdGenero Where G.Descricao = @Nome";
+            string Query = "Select L.IdLivro,L.Titulo,L.IdAutor,L.IdGenero, A.Nome,A.Email,A.Ativo,A.DataNascimento, G.Descricao " +
+"From Livros L join Autores A on A.IdAutor = L.IdAutor join Generos G on G.IdGenero = L.IdGenero Where G.Descricao = 'Aventura'";
 
             SqlConnection con = new SqlConnection(Conexao);
             con.Open();
