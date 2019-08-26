@@ -55,6 +55,18 @@ namespace Senai.Gufos.WebApi.Controllers
             }
         }
 
-
+        [HttpPut]
+        public IActionResult Atualizar(Categorias cat){
+            try {
+                var catFound = categoriasRepository.BuscarPorId(cat.IdCategoria);
+                if (catFound == null){
+                    return NotFound();
+                }
+                categoriasRepository.Atualizar(catFound);
+                return Ok();
+           } catch(Exception ex){
+                return BadRequest("Deu erro, o erro foi: " + ex.Message);
+            }
+        }
     }
 }
