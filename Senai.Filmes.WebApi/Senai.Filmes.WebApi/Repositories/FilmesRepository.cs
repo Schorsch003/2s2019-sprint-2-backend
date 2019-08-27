@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Senai.Filmes.WebApi.Repositories {
     public class FilmesRepository {
-        private string StringConexao = "Data Source=.\\SqlExpress;Initial Catalog=RoteiroFilmes;User Id=sa;Pwd=132;";
+        private string StringConexao = "Data Source=localhost;Initial Catalog=RoteiroFilmes;User Id=sa;Pwd=132;";
 
         public List<FilmesDomain> Listar() {
             var lista = new List<FilmesDomain>();

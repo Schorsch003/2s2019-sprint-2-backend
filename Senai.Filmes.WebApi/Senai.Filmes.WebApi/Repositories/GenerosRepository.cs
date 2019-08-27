@@ -7,7 +7,9 @@ using System.Threading.Tasks;
 
 namespace Senai.Filmes.WebApi.Repositories {
     public class GenerosRepository {
-        private string StringConexao = "Data Source=.\\SqlExpress;Initial Catalog=RoteiroFilmes;User Id=sa;Pwd=132;";
+        //private string StringConexao = "Data Source=.\\SqlExpress;Initial Catalog=RoteiroFilmes;User Id=sa;Pwd=132;";
+        private string StringConexao = "Data Source=localhost;Initial Catalog=RoteiroFilmes;User Id=sa;Pwd=132;";
+
 
         public List<GeneroDomain> Listar() {
             List<GeneroDomain> lista = new List<GeneroDomain>();
