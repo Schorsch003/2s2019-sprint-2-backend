@@ -20,6 +20,7 @@ namespace Senai.Optus.WebApi.Repositories {
             }
         }
 
+        // criar um metodo para retornar a qtd de artistas
 
     }
 }
