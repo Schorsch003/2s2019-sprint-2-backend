@@ -11,8 +11,10 @@ namespace Senai.Ekips.WebApi.Domains
         public decimal Salario { get; set; }
         public int? IdDepartamento { get; set; }
         public int? IdCargo { get; set; }
+        public int? IdUsuario { get; set; }
 
         public Cargos IdCargoNavigation { get; set; }
         public Departamentos IdDepartamentoNavigation { get; set; }
+        public Usuarios IdUsuarioNavigation { get; set; }
     }
 }

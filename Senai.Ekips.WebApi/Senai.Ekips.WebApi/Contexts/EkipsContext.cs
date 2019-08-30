@@ -26,7 +26,7 @@ namespace Senai.Ekips.WebApi.Domains
             if (!optionsBuilder.IsConfigured)
             {
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
-                optionsBuilder.UseSqlServer("Data Source=.\\SqlExpress;Initial Catalog= T_Ekpis; User ID = sa; Pwd = 132");
+                optionsBuilder.UseSqlServer("Data Source=.\\SqlExpress;Initial Catalog=T_Ekpis;User Id=sa;Pwd=132");
             }
         }
 
@@ -79,6 +79,11 @@ namespace Senai.Ekips.WebApi.Domains
                     .WithMany(p => p.Funcionarios)
                     .HasForeignKey(d => d.IdDepartamento)
                     .HasConstraintName("FK__Funcionar__IdDep__59063A47");
+
+                entity.HasOne(d => d.IdUsuarioNavigation)
+                    .WithMany(p => p.Funcionarios)
+                    .HasForeignKey(d => d.IdUsuario)
+                    .HasConstraintName("FK__Funcionar__IdUsu__6E01572D");
             });
 
             modelBuilder.Entity<Permissoes>(entity =>

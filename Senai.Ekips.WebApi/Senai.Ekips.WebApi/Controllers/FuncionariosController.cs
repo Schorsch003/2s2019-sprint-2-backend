@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
@@ -10,22 +12,27 @@ using Senai.Ekips.WebApi.Repositories;
 
 namespace Senai.Ekips.WebApi.Controllers {
     [Route("api/[controller]")]
+    [Produces("application/json")]
     [ApiController]
     public class FuncionariosController : ControllerBase {
 
         FuncionarioRepository funcionarioRepository = new FuncionarioRepository();
 
-        [Authorize(Roles = "COMUM")]
+        [Authorize]
         [HttpGet]
-        public IEnumerable<Funcionarios> Listar () {
-            return funcionarioRepository.Listar();
+        public IActionResult Listar () {
+            var identity = HttpContext.User.Identity as ClaimsIdentity;
+            string permissao = identity.Claims.FirstOrDefault(x => x.Type == ClaimTypes.Role).Value;
+            int id = Convert.ToInt32(identity.Claims.FirstOrDefault(x => x.Type == JwtRegisteredClaimNames.Jti).Value);
+
+            if (permissao == "ADMINISTRADOR") {
+                return Ok(funcionarioRepository.Listar());
+            } else if (permissao == "COMUM") {
+                return Ok(funcionarioRepository.BuscarPorId(id));
+            } else
+                return NotFound();
         }
 
-        //[Authorize(Roles = "COMUM")]
-      //  [HttpGet]
-    //    public IActionResult ListarComum () {
-  //          return Ok(funcionarioRepository.Listar());
-//        }
 
         [HttpPost]
         public IActionResult Cadastrar(Funcionarios funcionario) {
