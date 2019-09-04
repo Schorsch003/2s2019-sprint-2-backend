@@ -1,5 +1,6 @@
 ﻿using Senai.AutoPecas.WebApi.Domains;
 using Senai.AutoPecas.WebApi.Interfaces;
+using Senai.AutoPecas.WebApi.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,6 +24,12 @@ namespace Senai.AutoPecas.WebApi.Repositories {
                     }
                     if (peca.IdFornecedor != null) {
                         pecaRetornada.IdFornecedor = peca.IdFornecedor;
+                    }
+                    if (peca.PrecoCusto != null) {
+                        pecaRetornada.PrecoCusto = peca.PrecoCusto;
+                    }
+                    if (peca.PrecoVenda != null) {
+                        pecaRetornada.PrecoVenda = peca.PrecoVenda;
                     }
                     ctx.Pecas.Update(pecaRetornada);
                     ctx.SaveChanges();
@@ -63,6 +70,16 @@ namespace Senai.AutoPecas.WebApi.Repositories {
                 } else {
                     msg = "A peça que você deseja remover não pertence ao seu usuário";
                 }
+            }
+        }
+
+        public void CalcularGanho(int idPeca, out double ganho, out double porcentagem) {
+            using(AutoPecasContext ctx = new AutoPecasContext()) {
+                var peca = ctx.Pecas.Find(idPeca);
+
+                ganho = Convert.ToDouble(peca.PrecoVenda) - Convert.ToDouble(peca.PrecoCusto);
+                porcentagem = 1 + Convert.ToDouble(peca.PrecoVenda) / Convert.ToDouble(peca.PrecoCusto);
+
             }
         }
     }

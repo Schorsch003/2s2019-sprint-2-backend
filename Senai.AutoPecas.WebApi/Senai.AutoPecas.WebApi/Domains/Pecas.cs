@@ -9,7 +9,8 @@ namespace Senai.AutoPecas.WebApi.Domains
         public string CodigoPeca { get; set; }
         public string Descricao { get; set; }
         public decimal? Peso { get; set; }
-        public decimal? Preco { get; set; }
+        public decimal? PrecoVenda { get; set; }
+        public decimal? PrecoCusto { get; set; }
         public int? IdFornecedor { get; set; }
 
         public Fornecedores IdFornecedorNavigation { get; set; }

@@ -10,6 +10,7 @@ namespace Senai.AutoPecas.WebApi.Interfaces {
         Pecas BuscarPecaPorId (int id);
         void CadastrarPeca (int idFornecedor,Pecas peca);
         void AtualizarPeca (int idPeca,Pecas peca ,int idFornecedor, out string mensagem);
+        void CalcularGanho (int idPeca , out double ganho , out double porcentagem);
         void RemoverPeca (int id,int idFornecedor,out string mensagem);
     }
 }

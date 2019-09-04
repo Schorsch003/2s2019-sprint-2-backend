@@ -76,6 +76,14 @@ namespace Senai.AutoPecas.WebApi.Controllers {
             }
         }
 
+        [HttpGet("precos/{id}")]
+        public IActionResult CalcularGanho(int id) {
+            double a;
+            double b;
+            pecaRepository.CalcularGanho(id , out a , out b);
+            return Ok(new { message = "O ganho com a peça será de " + b + "%\nOu\n R$" + a });
+        }
+
         private int RecuperarIdUsuario () {
             var identity = HttpContext.User.Identity as ClaimsIdentity;
             return Convert.ToInt32(identity.Claims.FirstOrDefault(x => x.Type == JwtRegisteredClaimNames.Jti).Value);

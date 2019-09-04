@@ -23,7 +23,11 @@ namespace Senai.AutoPecas.WebApi.Repositories {
 
         public List<Usuarios> ListarUsuarios () {
             using (AutoPecasContext ctx = new AutoPecasContext()) {
-                return ctx.Usuarios.ToList();
+                var lista = ctx.Usuarios.ToList();
+                foreach(var item in lista) {
+                    item.Senha = null;
+                }
+                return lista;
             }
         }
     }

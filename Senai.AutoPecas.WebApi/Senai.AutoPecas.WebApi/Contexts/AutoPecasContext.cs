@@ -83,12 +83,14 @@ namespace Senai.AutoPecas.WebApi.Domains
 
                 entity.Property(e => e.Peso).HasColumnType("decimal(4, 2)");
 
-                entity.Property(e => e.Preco).HasColumnType("money");
+                entity.Property(e => e.PrecoCusto).HasColumnType("money");
+
+                entity.Property(e => e.PrecoVenda).HasColumnType("money");
 
                 entity.HasOne(d => d.IdFornecedorNavigation)
                     .WithMany(p => p.Pecas)
                     .HasForeignKey(d => d.IdFornecedor)
-                    .HasConstraintName("FK__Pecas__IdFornece__5CD6CB2B");
+                    .HasConstraintName("FK__Pecas__IdFornece__5FB337D6");
             });
 
             modelBuilder.Entity<Usuarios>(entity =>
