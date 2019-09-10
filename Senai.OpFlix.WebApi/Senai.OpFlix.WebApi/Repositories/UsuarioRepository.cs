@@ -20,7 +20,7 @@ namespace Senai.OpFlix.WebApi.Repositories {
                     userRetornado.Email = user.Email;
                 }
                 if (user.Senha != null) {
-                    userRetornado.Senha= user.Senha;
+                    userRetornado.Senha = user.Senha;
                 }
                 if (user.DataNascimento != null) {
                     userRetornado.DataNascimento = user.DataNascimento;
@@ -41,12 +41,17 @@ namespace Senai.OpFlix.WebApi.Repositories {
 
         public Usuarios BuscarPorId (int id) {
             using (OpFlixContext ctx = new OpFlixContext()) {
-                return ctx.Usuarios.Find(id);
+                return ctx.Usuarios.Include(x => x.IdPermissaoNavigation).FirstOrDefault(x => x.IdUsuario == id);
             }
         }
 
-        public void CadastrarUsuarios (Usuarios user) {
+        public void CadastrarUsuarios (Usuarios user , bool permissao) {
             using (OpFlixContext ctx = new OpFlixContext()) {
+                if (permissao) {
+                    user.IdPermissao = 1;
+                } else {
+                    user.IdPermissao = 2;
+                }
                 ctx.Usuarios.Add(user);
                 ctx.SaveChanges();
             }
@@ -66,7 +71,7 @@ namespace Senai.OpFlix.WebApi.Repositories {
             using (OpFlixContext ctx = new OpFlixContext()) {
                 ctx.Usuarios.Remove(ctx.Usuarios.Find(id));
                 ctx.SaveChanges();
-                }
             }
+        }
     }
 }
