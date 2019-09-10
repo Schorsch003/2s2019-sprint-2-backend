@@ -12,6 +12,7 @@ namespace Senai.OpFlix.WebApi.Interfaces {
         Usuarios BuscarPorEmailESenha (LoginViewModel login);
         void CadastrarUsuarios (Usuarios user);
         void AtualizarUsuarios (int id , Usuarios user);
+        void RemoverUsuarios (int id);
         
     }
 }

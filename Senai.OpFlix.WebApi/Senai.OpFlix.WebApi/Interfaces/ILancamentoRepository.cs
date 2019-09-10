@@ -8,5 +8,7 @@ namespace Senai.OpFlix.WebApi.Interfaces {
     public interface ILancamentoRepository {
         List<Lancamentos> ListarLancamentos ();
         void CadastrarLancamentos (Lancamentos lanc);
+        void AtualizarLancamento (int id , Lancamentos lanc);
+        void RemoverLancamentos (int id);
     }
 }

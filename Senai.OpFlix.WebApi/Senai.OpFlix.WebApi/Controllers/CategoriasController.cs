@@ -35,5 +35,27 @@ namespace Senai.OpFlix.WebApi.Controllers {
                 return BadRequest(ex.Message);
             }
         }
+
+        [Authorize(Roles = "Administrador")]
+        [HttpPut("{id}")]
+        public IActionResult AtualizarCategoria(int id, Categoria cat) {
+            try {
+                categoriaRepository.AtualizarCategoria(id , cat);
+                return Ok(new { message = "Categoria atualizada com sucesso!" });
+            }catch(Exception ex) {
+                return BadRequest(new { message = "Erro: " + ex.Message });
+            }
+        }
+
+        [Authorize(Roles = "Administrador")]
+        [HttpDelete("{id}")]
+        public IActionResult RemoverCategoria(int id) {
+            try {
+                categoriaRepository.RemoverCategoria(id);
+                return Ok(new { message = "Categoria removida com sucesso!" });
+            }catch (Exception ex) {
+                return BadRequest(new { message = "Erro: " + ex.Message });
+            }
+        }
     }
 }

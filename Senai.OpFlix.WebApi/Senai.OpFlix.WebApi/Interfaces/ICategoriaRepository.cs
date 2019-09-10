@@ -9,6 +9,8 @@ namespace Senai.OpFlix.WebApi.Interfaces {
         List<Categoria> ListarCategorias ();
         Categoria BuscarCategoriaPorId (int id);
         void CadastrarCategoria (Categoria cat);
+        void AtualizarCategoria (int id , Categoria cat);
+        void RemoverCategoria (int id);
 
     }
 }

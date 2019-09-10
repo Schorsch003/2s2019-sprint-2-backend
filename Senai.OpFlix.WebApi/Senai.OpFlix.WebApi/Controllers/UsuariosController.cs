@@ -51,5 +51,16 @@ namespace Senai.OpFlix.WebApi.Controllers {
                 return BadRequest(ex.Message);
             }
         }
+
+        [Authorize(Roles = "Administrador")]
+        [HttpDelete("{id}")]
+        public IActionResult RemoverUsuario(int id) {
+            try {
+                usuarioRepository.RemoverUsuarios(id);
+                return Ok(new { message = "Usuario removido com sucesso"});
+            } catch (Exception ex) {
+                return BadRequest(ex.Message);
+            }
+        }
     }
 }

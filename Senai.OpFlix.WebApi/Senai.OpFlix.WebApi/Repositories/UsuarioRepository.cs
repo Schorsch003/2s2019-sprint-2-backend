@@ -61,5 +61,12 @@ namespace Senai.OpFlix.WebApi.Repositories {
                 return lista;
             }
         }
+
+        public void RemoverUsuarios (int id) {
+            using (OpFlixContext ctx = new OpFlixContext()) {
+                ctx.Usuarios.Remove(ctx.Usuarios.Find(id));
+                ctx.SaveChanges();
+                }
+            }
     }
 }

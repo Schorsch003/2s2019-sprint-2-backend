@@ -27,11 +27,33 @@ namespace Senai.OpFlix.WebApi.Controllers {
         [Authorize(Roles = "Administrador")]
         [HttpPost]
         public IActionResult CadastrarLancamento (Lancamentos lanc) {
-            try { 
+            try {
                 lancamentoRepository.CadastrarLancamentos(lanc);
                 return Ok();
-            } catch(Exception ex) {
+            } catch (Exception ex) {
                 return BadRequest(ex.Message);
+            }
+        }
+
+        [Authorize(Roles = "Administrador")]
+        [HttpPut("{id}")]
+        public IActionResult AtualizarLancamento (int id , Lancamentos lanc) {
+            try {
+                lancamentoRepository.AtualizarLancamento(id , lanc);
+                return Ok();
+            } catch (Exception ex) {
+                return BadRequest(new { message = "Erro: " + ex.Message });
+            }
+        }
+
+        [Authorize(Roles = "Administrador")]
+        [HttpDelete("{id}")]
+        public IActionResult RemoverLancamento(int id) {
+            try {
+                lancamentoRepository.RemoverLancamentos(id);
+                return Ok(new { message = "Lancamento removido com sucesso!"});
+            }catch(Exception ex) {
+                return BadRequest(new { message = "Erro: " + ex.Message});
             }
         }
     }
