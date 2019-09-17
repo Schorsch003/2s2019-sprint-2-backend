@@ -1,0 +1,869 @@
+{
+	"info": {
+		"_postman_id": "67fdb668-f5a4-46cc-a0ba-a59aa9e99610",
+		"name": "Senai.OpFlix",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Usuarios",
+			"item": [
+				{
+					"name": "Usuarios.Listar",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImdhYnJpZWwuc2Nob3JzY2hAZW1haWwuY29tIiwianRpIjoiMSIsImh0dHA6Ly9zY2hlbWFzLm1pY3Jvc29mdC5jb20vd3MvMjAwOC8wNi9pZGVudGl0eS9jbGFpbXMvcm9sZSI6IkFkbWluaXN0cmFkb3IiLCJleHAiOjE1NjgzMTY3NDksImlzcyI6Ik9wRmxpeC5XZWJBcGkiLCJhdWQiOiJPcEZsaXguV2ViQXBpIn0.gftT27jddgbwBrPfg-XaZul7vx00hJYTlZ4MBSAweGM",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{ip}}:5000/api/usuarios",
+							"host": [
+								"{{ip}}"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"usuarios"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Usuarios.Atualizar",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImdhYnJpZWwuc2Nob3JzY2hAZW1haWwuY29tIiwianRpIjoiMSIsImh0dHA6Ly9zY2hlbWFzLm1pY3Jvc29mdC5jb20vd3MvMjAwOC8wNi9pZGVudGl0eS9jbGFpbXMvcm9sZSI6IkFkbWluaXN0cmFkb3IiLCJleHAiOjE1NjgzMjIyMjYsImlzcyI6Ik9wRmxpeC5XZWJBcGkiLCJhdWQiOiJPcEZsaXguV2ViQXBpIn0.fAwQxQfTnZ5jxnuj5XXVbVnaQ_yr-VCkaYXFpNm2Rlw",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"senha\":\"123456\"\n}"
+						},
+						"url": {
+							"raw": "{{ip}}:5000/api/usuarios/1",
+							"host": [
+								"{{ip}}"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"usuarios",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Usuarios.Login",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"email\":\"gabriel.schorsch@email.com\",\n\t\"senha\":\"123312\"\n}\n\n"
+						},
+						"url": {
+							"raw": "{{ip}}:5000/api/login",
+							"host": [
+								"{{ip}}"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Usuarios.Cadastrar",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImdhYnJpZWwuc2Nob3JzY2hAZW1haWwuY29tIiwianRpIjoiMSIsImh0dHA6Ly9zY2hlbWFzLm1pY3Jvc29mdC5jb20vd3MvMjAwOC8wNi9pZGVudGl0eS9jbGFpbXMvcm9sZSI6IkFkbWluaXN0cmFkb3IiLCJleHAiOjE1NjgxNTA1NTQsImlzcyI6Ik9wRmxpeC5XZWJBcGkiLCJhdWQiOiJPcEZsaXguV2ViQXBpIn0.-hTTZe8AHiTilrcsZDxSsdWatJBF92rMZlRLtQ23qkg",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n        \"nome\": \"Jãozao\",\n        \"email\": \"jaoz.sonso@email.com\",\n        \"senha\": \"111111\",\n        \"dataNascimento\": \"2003-04-04T00:00:00\"\n}"
+						},
+						"url": {
+							"raw": "{{ip}}:5000/api/cadastro",
+							"host": [
+								"{{ip}}"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"cadastro"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Usuarios.Remover",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{ip}}:5000/api/usuarios/10",
+							"host": [
+								"{{ip}}"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"usuarios",
+								"10"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Usuario.FavoritarLancamento",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImdhYnJpZWwuc2Nob3JzY2hAZW1haWwuY29tIiwianRpIjoiMSIsImh0dHA6Ly9zY2hlbWFzLm1pY3Jvc29mdC5jb20vd3MvMjAwOC8wNi9pZGVudGl0eS9jbGFpbXMvcm9sZSI6IkFkbWluaXN0cmFkb3IiLCJleHAiOjE1NjgzMTY3NDksImlzcyI6Ik9wRmxpeC5XZWJBcGkiLCJhdWQiOiJPcEZsaXguV2ViQXBpIn0.gftT27jddgbwBrPfg-XaZul7vx00hJYTlZ4MBSAweGM",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{ip}}:5000/api/usuarios/fav/1",
+							"host": [
+								"{{ip}}"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"usuarios",
+								"fav",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Lancamentos.FiltrarPorPlataforma",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{ip}}:5000/api/lancamentos/plat/netflix",
+							"host": [
+								"{{ip}}"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"lancamentos",
+								"plat",
+								"netflix"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Lancamentos.FiltrarPorPlataforma",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{ip}}:5000/api/lancamentos/data/2008",
+							"host": [
+								"{{ip}}"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"lancamentos",
+								"data",
+								"2008"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"description": "Pasta que contém as execuções de endpoints de usuários",
+			"auth": {
+				"type": "bearer",
+				"bearer": [
+					{
+						"key": "token",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImdhYnJpZWwuc2Nob3JzY2hAZW1haWwuY29tIiwianRpIjoiMSIsImh0dHA6Ly9zY2hlbWFzLm1pY3Jvc29mdC5jb20vd3MvMjAwOC8wNi9pZGVudGl0eS9jbGFpbXMvcm9sZSI6IkFkbWluaXN0cmFkb3IiLCJleHAiOjE1NjgxNDA3MTAsImlzcyI6Ik9wRmxpeC5XZWJBcGkiLCJhdWQiOiJPcEZsaXguV2ViQXBpIn0.F-bOffjG3keEz2S2cvRYFb12NqANuAOdHXhU4oe1uqU",
+						"type": "string"
+					}
+				]
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "e9b3579b-030d-4265-ba03-ea20d086074c",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "021a9e00-0a6d-483b-90e5-a3c987d4c924",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "Categorias",
+			"item": [
+				{
+					"name": "Categorias.Listar",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{ip}}:5000/api/categorias",
+							"host": [
+								"{{ip}}"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"categorias"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Categorias.Cadastrar",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImdhYnJpZWwuc2Nob3JzY2hAZW1haWwuY29tIiwianRpIjoiMSIsImh0dHA6Ly9zY2hlbWFzLm1pY3Jvc29mdC5jb20vd3MvMjAwOC8wNi9pZGVudGl0eS9jbGFpbXMvcm9sZSI6IkFkbWluaXN0cmFkb3IiLCJleHAiOjE1NjgwNTY4ODMsImlzcyI6Ik9wRmxpeC5XZWJBcGkiLCJhdWQiOiJPcEZsaXguV2ViQXBpIn0.CwZNiHUG2pzZvenVtoU-GXHV8noIh1x4NdkxFqBORIk",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"nome\":\"novaCategoria\"\n}"
+						},
+						"url": {
+							"raw": "{{ip}}:5000/api/categorias",
+							"host": [
+								"{{ip}}"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"categorias"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Categorias.Atualizar",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImdhYnJpZWwuc2Nob3JzY2hAZW1haWwuY29tIiwianRpIjoiMSIsImh0dHA6Ly9zY2hlbWFzLm1pY3Jvc29mdC5jb20vd3MvMjAwOC8wNi9pZGVudGl0eS9jbGFpbXMvcm9sZSI6IkFkbWluaXN0cmFkb3IiLCJleHAiOjE1NjgxNDI1NjUsImlzcyI6Ik9wRmxpeC5XZWJBcGkiLCJhdWQiOiJPcEZsaXguV2ViQXBpIn0.K03Z0dfeIwnAiNQjIu2l255qMM0s7BLYAFeH3KJr0jk",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"nome\":\"NovaCategoria\"\n}"
+						},
+						"url": {
+							"raw": "{{ip}}:5000/api/categorias/13",
+							"host": [
+								"{{ip}}"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"categorias",
+								"13"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Categorias.Remover",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImdhYnJpZWwuc2Nob3JzY2hAZW1haWwuY29tIiwianRpIjoiMSIsImh0dHA6Ly9zY2hlbWFzLm1pY3Jvc29mdC5jb20vd3MvMjAwOC8wNi9pZGVudGl0eS9jbGFpbXMvcm9sZSI6IkFkbWluaXN0cmFkb3IiLCJleHAiOjE1NjgxNDI1NjUsImlzcyI6Ik9wRmxpeC5XZWJBcGkiLCJhdWQiOiJPcEZsaXguV2ViQXBpIn0.K03Z0dfeIwnAiNQjIu2l255qMM0s7BLYAFeH3KJr0jk",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"nome\":\"NovaCategoria\"\n}"
+						},
+						"url": {
+							"raw": "{{ip}}:5000/api/categorias/13",
+							"host": [
+								"{{ip}}"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"categorias",
+								"13"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Lançamentos",
+			"item": [
+				{
+					"name": "Lancamentos.Listar",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{ip}}:5000/api/lancamentos",
+							"host": [
+								"{{ip}}"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"lancamentos"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Lancamentos.Cadastrar",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImdhYnJpZWwuc2Nob3JzY2hAZW1haWwuY29tIiwianRpIjoiMSIsImh0dHA6Ly9zY2hlbWFzLm1pY3Jvc29mdC5jb20vd3MvMjAwOC8wNi9pZGVudGl0eS9jbGFpbXMvcm9sZSI6IkFkbWluaXN0cmFkb3IiLCJleHAiOjE1NjgwNTY4ODMsImlzcyI6Ik9wRmxpeC5XZWJBcGkiLCJhdWQiOiJPcEZsaXguV2ViQXBpIn0.CwZNiHUG2pzZvenVtoU-GXHV8noIh1x4NdkxFqBORIk",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"titulo\": \"Mandando para produção, o bug escondido \",\n\t\"sinopse\": \"Um filme baseado em histórias reais\",\n    \"idTipo\": 1,\n    \"idCategoria\": 3,\n    \"dataLancamento\": \"2019-09-09T00:00:00\",\n    \"tempoDuracao\": 300,\n    \"plataforma\": 1\n}"
+						},
+						"url": {
+							"raw": "{{ip}}:5000/api/lancamentos",
+							"host": [
+								"{{ip}}"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"lancamentos"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Lancamentos.Atualizar",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImdhYnJpZWwuc2Nob3JzY2hAZW1haWwuY29tIiwianRpIjoiMSIsImh0dHA6Ly9zY2hlbWFzLm1pY3Jvc29mdC5jb20vd3MvMjAwOC8wNi9pZGVudGl0eS9jbGFpbXMvcm9sZSI6IkFkbWluaXN0cmFkb3IiLCJleHAiOjE1NjgxNDA3MTAsImlzcyI6Ik9wRmxpeC5XZWJBcGkiLCJhdWQiOiJPcEZsaXguV2ViQXBpIn0.F-bOffjG3keEz2S2cvRYFb12NqANuAOdHXhU4oe1uqU",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n        \"dataLancamento\": \"1999-03-25T00:00:00\" \n}"
+						},
+						"url": {
+							"raw": "{{ip}}:5000/api/lancamentos/2",
+							"host": [
+								"{{ip}}"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"lancamentos",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Lancamentos.Remover",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImdhYnJpZWwuc2Nob3JzY2hAZW1haWwuY29tIiwianRpIjoiMSIsImh0dHA6Ly9zY2hlbWFzLm1pY3Jvc29mdC5jb20vd3MvMjAwOC8wNi9pZGVudGl0eS9jbGFpbXMvcm9sZSI6IkFkbWluaXN0cmFkb3IiLCJleHAiOjE1NjgxNDA3MTAsImlzcyI6Ik9wRmxpeC5XZWJBcGkiLCJhdWQiOiJPcEZsaXguV2ViQXBpIn0.F-bOffjG3keEz2S2cvRYFb12NqANuAOdHXhU4oe1uqU",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{ip}}:5000/api/lancamentos/14",
+							"host": [
+								"{{ip}}"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"lancamentos",
+								"14"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Lancamentos.ListarFavoritosDeUsuario",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{ip}}:5000/api/lancamentos/2",
+							"host": [
+								"{{ip}}"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"lancamentos",
+								"2"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Plataformas",
+			"item": [
+				{
+					"name": "Plataformas.Listar",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{ip}}:5000/api/plataformas",
+							"host": [
+								"{{ip}}"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"plataformas"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Plataformas.Cadastrar",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImdhYnJpZWwuc2Nob3JzY2hAZW1haWwuY29tIiwianRpIjoiMSIsImh0dHA6Ly9zY2hlbWFzLm1pY3Jvc29mdC5jb20vd3MvMjAwOC8wNi9pZGVudGl0eS9jbGFpbXMvcm9sZSI6IkFkbWluaXN0cmFkb3IiLCJleHAiOjE1NjgxNDI1NjUsImlzcyI6Ik9wRmxpeC5XZWJBcGkiLCJhdWQiOiJPcEZsaXguV2ViQXBpIn0.K03Z0dfeIwnAiNQjIu2l255qMM0s7BLYAFeH3KJr0jk",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"nome\":\"HBO Go\"\n}"
+						},
+						"url": {
+							"raw": "{{ip}}:5000/api/plataformas",
+							"host": [
+								"{{ip}}"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"plataformas"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Plataformas.Atualizar",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImdhYnJpZWwuc2Nob3JzY2hAZW1haWwuY29tIiwianRpIjoiMSIsImh0dHA6Ly9zY2hlbWFzLm1pY3Jvc29mdC5jb20vd3MvMjAwOC8wNi9pZGVudGl0eS9jbGFpbXMvcm9sZSI6IkFkbWluaXN0cmFkb3IiLCJleHAiOjE1NjgxNDI1NjUsImlzcyI6Ik9wRmxpeC5XZWJBcGkiLCJhdWQiOiJPcEZsaXguV2ViQXBpIn0.K03Z0dfeIwnAiNQjIu2l255qMM0s7BLYAFeH3KJr0jk",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"nome\":\"HBO GO\"\n}"
+						},
+						"url": {
+							"raw": "{{ip}}:5000/api/plataformas/5",
+							"host": [
+								"{{ip}}"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"plataformas",
+								"5"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Plataformas.Remover",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImdhYnJpZWwuc2Nob3JzY2hAZW1haWwuY29tIiwianRpIjoiMSIsImh0dHA6Ly9zY2hlbWFzLm1pY3Jvc29mdC5jb20vd3MvMjAwOC8wNi9pZGVudGl0eS9jbGFpbXMvcm9sZSI6IkFkbWluaXN0cmFkb3IiLCJleHAiOjE1NjgxNDI1NjUsImlzcyI6Ik9wRmxpeC5XZWJBcGkiLCJhdWQiOiJPcEZsaXguV2ViQXBpIn0.K03Z0dfeIwnAiNQjIu2l255qMM0s7BLYAFeH3KJr0jk",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"nome\":\"HBO GO\"\n}"
+						},
+						"url": {
+							"raw": "{{ip}}:5000/api/plataformas/6",
+							"host": [
+								"{{ip}}"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"plataformas",
+								"6"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Tipos",
+			"item": [
+				{
+					"name": "Tipos.Listar",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{ip}}:5000/api/tipo",
+							"host": [
+								"{{ip}}"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"tipo"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Tipos.Cadastrar",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImdhYnJpZWwuc2Nob3JzY2hAZW1haWwuY29tIiwianRpIjoiMSIsImh0dHA6Ly9zY2hlbWFzLm1pY3Jvc29mdC5jb20vd3MvMjAwOC8wNi9pZGVudGl0eS9jbGFpbXMvcm9sZSI6IkFkbWluaXN0cmFkb3IiLCJleHAiOjE1NjgxNDI1NjUsImlzcyI6Ik9wRmxpeC5XZWJBcGkiLCJhdWQiOiJPcEZsaXguV2ViQXBpIn0.K03Z0dfeIwnAiNQjIu2l255qMM0s7BLYAFeH3KJr0jk",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"nome\":\"Livestream\"\n}"
+						},
+						"url": {
+							"raw": "{{ip}}:5000/api/tipo",
+							"host": [
+								"{{ip}}"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"tipo"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Tipos.Atualizar",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImdhYnJpZWwuc2Nob3JzY2hAZW1haWwuY29tIiwianRpIjoiMSIsImh0dHA6Ly9zY2hlbWFzLm1pY3Jvc29mdC5jb20vd3MvMjAwOC8wNi9pZGVudGl0eS9jbGFpbXMvcm9sZSI6IkFkbWluaXN0cmFkb3IiLCJleHAiOjE1NjgxNDI1NjUsImlzcyI6Ik9wRmxpeC5XZWJBcGkiLCJhdWQiOiJPcEZsaXguV2ViQXBpIn0.K03Z0dfeIwnAiNQjIu2l255qMM0s7BLYAFeH3KJr0jk",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"nome\":\"LiveStream\"\n}"
+						},
+						"url": {
+							"raw": "{{ip}}:5000/api/tipo/3",
+							"host": [
+								"{{ip}}"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"tipo",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Tipos.Remover",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImdhYnJpZWwuc2Nob3JzY2hAZW1haWwuY29tIiwianRpIjoiMSIsImh0dHA6Ly9zY2hlbWFzLm1pY3Jvc29mdC5jb20vd3MvMjAwOC8wNi9pZGVudGl0eS9jbGFpbXMvcm9sZSI6IkFkbWluaXN0cmFkb3IiLCJleHAiOjE1NjgxNDI1NjUsImlzcyI6Ik9wRmxpeC5XZWJBcGkiLCJhdWQiOiJPcEZsaXguV2ViQXBpIn0.K03Z0dfeIwnAiNQjIu2l255qMM0s7BLYAFeH3KJr0jk",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{ip}}:5000/api/tipo/3",
+							"host": [
+								"{{ip}}"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"tipo",
+								"3"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
