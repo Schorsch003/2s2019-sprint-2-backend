@@ -17,6 +17,7 @@ namespace Senai.OpFlix.WebApi.Domains {
         public virtual DbSet<Plataformas> Plataformas { get; set; }
         public virtual DbSet<Tipo> Tipo { get; set; }
         public virtual DbSet<Usuarios> Usuarios { get; set; }
+        public virtual DbSet<LancamentosFavoritos> LancamentosFavoritos { get; set; }
 
         // Unable to generate entity type for table 'dbo.LancamentosFavoritos'. Please see the warning messages.
 
@@ -29,17 +30,17 @@ namespace Senai.OpFlix.WebApi.Domains {
 
         protected override void OnModelCreating (ModelBuilder modelBuilder) {
 
-            modelBuilder.Entity<FavoritosUsuarios>().
-                HasKey(e => new { e.IdUsuario , e.IdLancamentos });
+            modelBuilder.Entity<LancamentosFavoritos>().
+                HasKey(e => new { e.IdUsuario , e.IdLancamento });
 
-            modelBuilder.Entity<FavoritosUsuarios>().
+            modelBuilder.Entity<LancamentosFavoritos>().
                 HasOne(e => e.Lancamento)
-                .WithMany(e => e.FavoritosUsuarios)
-                .HasForeignKey(e => e.IdLancamentos);
+                .WithMany(e => e.LancamentosFavoritos)
+                .HasForeignKey(e => e.IdLancamento);
 
-            modelBuilder.Entity<FavoritosUsuarios>().
+            modelBuilder.Entity<LancamentosFavoritos>().
               HasOne(e => e.Usuario)
-              .WithMany(e => e.FavoritosUsuarios)
+              .WithMany(e => e.LancamentosFavoritos)
               .HasForeignKey(e => e.IdUsuario);
 
 

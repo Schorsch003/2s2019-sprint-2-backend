@@ -31,10 +31,10 @@ namespace Senai.OpFlix.WebApi.Repositories {
 #pragma warning restore CS0472 // O resultado da expressão é sempre o mesmo, pois um valor deste tipo nunca é 'null' 
                     lancamento.TempoDuracao = lanc.TempoDuracao;
                 }
-                if(lanc.Plataforma != null) {
+                if (lanc.Plataforma != null) {
                     lancamento.Plataforma = lanc.Plataforma;
                 }
-                if(lanc.DataLancamento != null) {
+                if (lanc.DataLancamento != null) {
                     lancamento.DataLancamento = lanc.DataLancamento;
                 }
                 ctx.Update(lancamento);
@@ -46,6 +46,16 @@ namespace Senai.OpFlix.WebApi.Repositories {
             }
         }
 
+        public List<LancamentosFavoritos> BuscarUsuariosPorLancamentoFavorito (int idLancamento) {
+            using (OpFlixContext ctx = new OpFlixContext()) {
+                var lista =  ctx.LancamentosFavoritos.Include(x => x.Usuario). Where(x => x.IdLancamento == idLancamento).ToList();
+                foreach (var item in lista) {
+                    item.Usuario.Senha = null;
+                }
+                return lista;        
+            }
+        }
+
         public void CadastrarLancamentos (Lancamentos lanc) {
             using (OpFlixContext ctx = new OpFlixContext()) {
                 ctx.Lancamentos.Add(lanc);
@@ -53,11 +63,23 @@ namespace Senai.OpFlix.WebApi.Repositories {
             }
         }
 
+        public List<Lancamentos> FiltrarPorData (int ano) {
+            using (OpFlixContext ctx = new OpFlixContext()) {
+                return ctx.Lancamentos.Where(x => x.DataLancamento.Year == ano).ToList();
+            }
+        }
+
+        public List<Lancamentos> FiltrarPorPlataforma (string plat) {
+            using (OpFlixContext ctx = new OpFlixContext()) {
+                return ctx.Lancamentos.Include(x => x.PlataformaNavigation).Where(x => x.PlataformaNavigation.Nome == plat).ToList();
+            }
+        }
+
         public List<Lancamentos> ListarLancamentos () {
             using (OpFlixContext ctx = new OpFlixContext()) {
                 var lista = ctx.Lancamentos.Include(x => x.IdCategoriaNavigation).Include(x => x.IdTipoNavigation)
                     .Include(x => x.PlataformaNavigation).ToList();
-                foreach(var item in lista) {
+                foreach (var item in lista) {
                     item.IdCategoriaNavigation.Lancamentos = null;
                     item.IdTipoNavigation.Lancamentos = null;
                     item.PlataformaNavigation.Lancamentos = null;

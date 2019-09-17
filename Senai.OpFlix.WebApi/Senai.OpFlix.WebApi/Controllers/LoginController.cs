@@ -21,6 +21,15 @@ namespace Senai.OpFlix.WebApi.Controllers {
 
         [HttpPost]
         public IActionResult Login(LoginViewModel login) {
+
+            //FUNCIONA APENAS PARA USUARIOS COM SENHA CRIPTOGRAFADA
+
+            var encryp = System.Text.Encoding.ASCII.GetBytes(login.Senha);
+            string senhaCrip = Convert.ToBase64String(encryp);
+            login.Senha = senhaCrip;
+
+
+
             var user = usuarioRepository.BuscarPorEmailESenha(login);
             if (user == null) {
                 return NotFound();

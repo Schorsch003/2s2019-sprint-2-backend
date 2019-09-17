@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
@@ -51,5 +53,20 @@ namespace Senai.OpFlix.WebApi.Controllers {
                 return BadRequest(ex.Message);
             }
         }
+
+        [Authorize]
+        [HttpPost("fav/{idLancamento}")]
+        public IActionResult FavoritarLancamento(int idLancamento) {
+            try {
+                var identity = HttpContext.User.Identity as ClaimsIdentity;
+                var idUsuario = Convert.ToInt32(identity.Claims.First(x => x.Type == JwtRegisteredClaimNames.Jti).Value);
+                usuarioRepository.FavoritarLancamento(idUsuario , idLancamento);
+                return Ok();
+            } catch (Exception ex) {
+                return BadRequest(ex.Message);
+            }
+        }
+
+        
     }
 }

@@ -14,9 +14,11 @@ namespace Senai.OpFlix.WebApi.Controllers {
     [ApiController]
     public class LancamentosController : ControllerBase {
         ILancamentoRepository lancamentoRepository;
+        IUsuarioRepository usuarioRepository;
 
         public LancamentosController () {
             lancamentoRepository = new LancamentoRepository();
+            usuarioRepository = new UsuarioRepository();
         }
 
         [HttpGet]
@@ -48,12 +50,41 @@ namespace Senai.OpFlix.WebApi.Controllers {
 
         [Authorize(Roles = "Administrador")]
         [HttpDelete("{id}")]
-        public IActionResult RemoverLancamento(int id) {
+        public IActionResult RemoverLancamento (int id) {
             try {
                 lancamentoRepository.RemoverLancamentos(id);
-                return Ok(new { message = "Lancamento removido com sucesso!"});
-            }catch(Exception ex) {
-                return BadRequest(new { message = "Erro: " + ex.Message});
+                return Ok(new { message = "Lancamento removido com sucesso!" });
+            } catch (Exception ex) {
+                return BadRequest(new { message = "Erro: " + ex.Message });
+            }
+        }
+
+        //[HttpGet("{idLancamento}")]
+        //public IActionResult BuscarUsuariosPorLancamentoFavorito (int idLancamento) {
+        //    return Ok(lancamentoRepository.BuscarUsuariosPorLancamentoFavorito(idLancamento));
+        //}
+
+        [HttpGet("{idUsuario}")]
+        public IEnumerable<Lancamentos> BuscarLancamentosFavoritos (int idUsuario) {
+            return usuarioRepository.BuscarLancamentosFavoritos(idUsuario);
+        }
+
+        [HttpGet("data/{ano}")]
+        public IActionResult FiltrarPorData (int ano) {
+            try {
+                return Ok(lancamentoRepository.FiltrarPorData(ano));
+            } catch (Exception ex) {
+                return BadRequest(ex.Message);
+            }
+        }
+
+        [HttpGet("plat/{plat}")]
+        public IActionResult FiltrarPorPlataforma (string plat) {
+            try {
+                
+                return Ok(lancamentoRepository.FiltrarPorPlataforma(plat));
+            } catch (Exception ex) {
+                return BadRequest(ex.Message);
             }
         }
     }

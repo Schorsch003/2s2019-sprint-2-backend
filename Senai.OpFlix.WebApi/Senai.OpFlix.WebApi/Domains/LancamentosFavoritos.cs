@@ -4,8 +4,8 @@ using System.Linq;
 using System.Threading.Tasks;
 
 namespace Senai.OpFlix.WebApi.Domains {
-    public class FavoritosUsuarios {
-        public int IdLancamentos { get; set; }
+    public class LancamentosFavoritos {
+        public int IdLancamento { get; set; }
         public int IdUsuario { get; set; }
 
         public Lancamentos Lancamento { get; set; }
