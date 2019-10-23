@@ -48,11 +48,11 @@ namespace Senai.OpFlix.WebApi.Repositories {
 
         public List<LancamentosFavoritos> BuscarUsuariosPorLancamentoFavorito (int idLancamento) {
             using (OpFlixContext ctx = new OpFlixContext()) {
-                var lista =  ctx.LancamentosFavoritos.Include(x => x.Usuario). Where(x => x.IdLancamento == idLancamento).ToList();
+                var lista = ctx.LancamentosFavoritos.Include(x => x.Usuario).Where(x => x.IdLancamento == idLancamento).ToList();
                 foreach (var item in lista) {
                     item.Usuario.Senha = null;
                 }
-                return lista;        
+                return lista;
             }
         }
 
@@ -66,6 +66,12 @@ namespace Senai.OpFlix.WebApi.Repositories {
         public List<Lancamentos> FiltrarPorData (int ano) {
             using (OpFlixContext ctx = new OpFlixContext()) {
                 return ctx.Lancamentos.Where(x => x.DataLancamento.Year == ano).ToList();
+            }
+        }
+
+        public Lancamentos BuscarPorId (int id) {
+            using (OpFlixContext ctx = new OpFlixContext()) {
+                return ctx.Lancamentos.Find(id);
             }
         }
 

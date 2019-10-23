@@ -21,6 +21,9 @@ namespace Senai.Sstop.WebApi
                 Title = "Sstop API", Version = "v1"
             }
                 ));
+            services.AddCors(options => {
+                options.AddPolicy("CorsPolicy" , builder => builder.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader().AllowCredentials());
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -35,7 +38,7 @@ namespace Senai.Sstop.WebApi
             app.UseSwaggerUI( c => {
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "Sstop API V1");
             });
-
+            app.UseCors("CorsPolicy");
             app.UseMvc();
         }
     }

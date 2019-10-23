@@ -64,9 +64,14 @@ namespace Senai.OpFlix.WebApi.Controllers {
         //    return Ok(lancamentoRepository.BuscarUsuariosPorLancamentoFavorito(idLancamento));
         //}
 
-        [HttpGet("{idUsuario}")]
+        [HttpGet("fav/{idUsuario}")]
         public IEnumerable<Lancamentos> BuscarLancamentosFavoritos (int idUsuario) {
             return usuarioRepository.BuscarLancamentosFavoritos(idUsuario);
+        }
+
+        [HttpGet("{id}")]
+        public IActionResult BuscarLancamentoPorId(int id) {
+            return Ok(lancamentoRepository.BuscarPorId(id));
         }
 
         [HttpGet("data/{ano}")]

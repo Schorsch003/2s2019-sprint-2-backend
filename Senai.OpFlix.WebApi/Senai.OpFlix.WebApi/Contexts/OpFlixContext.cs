@@ -81,6 +81,9 @@ namespace Senai.OpFlix.WebApi.Domains {
                     .WithMany(p => p.Lancamentos)
                     .HasForeignKey(d => d.Plataforma)
                     .HasConstraintName("FK__Lancament__Plata__75A278F5");
+
+                entity.Property(e => e.Imagem)
+                    .HasMaxLength(2083);
             });
 
             modelBuilder.Entity<Permissoes>(entity => {

@@ -13,6 +13,7 @@ namespace Senai.OpFlix.WebApi.Domains
         public DateTime DataLancamento { get; set; }
         public int TempoDuracao { get; set; }
         public int? Plataforma { get; set; }
+        public string Imagem { get; set; }
 
         public Categoria IdCategoriaNavigation { get; set; }
         public List<LancamentosFavoritos> LancamentosFavoritos { get; set; }

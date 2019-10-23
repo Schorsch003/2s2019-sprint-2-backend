@@ -16,7 +16,7 @@ namespace Senai.Sstop.WebApi.Repositories {
 
             // Conectar com o banco
             using (SqlConnection con = new SqlConnection(StringConexao)) {
-                string Query = "SELECT IdEstiloMusical, Nome FROM EstilosMusicais";
+                string Query = "SELECT IdEstiloMusical, Nome FROM EstilosMusicais order by IdEstiloMusical asc";
 
                 //Abrir a conexão
                 con.Open();
