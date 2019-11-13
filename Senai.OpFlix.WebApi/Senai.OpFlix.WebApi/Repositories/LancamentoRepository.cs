@@ -71,7 +71,7 @@ namespace Senai.OpFlix.WebApi.Repositories {
 
         public Lancamentos BuscarPorId (int id) {
             using (OpFlixContext ctx = new OpFlixContext()) {
-                return ctx.Lancamentos.Find(id);
+                return ctx.Lancamentos.Include(x => x.IdCategoriaNavigation).Include(x => x.IdTipoNavigation).Include(x => x.PlataformaNavigation).FirstOrDefault(x => x.IdLancamento == id);
             }
         }
 
@@ -100,6 +100,19 @@ namespace Senai.OpFlix.WebApi.Repositories {
                 ctx.Remove(lanc);
                 ctx.SaveChanges();
             }
+        }
+
+        public List<Lancamentos> MaisRecentes () {
+            using (OpFlixContext ctx = new OpFlixContext()) {
+                return ctx.Lancamentos.OrderBy(x => x.DataLancamento).ToList();
+            }
+        }
+
+        public List<Lancamentos> BuscarPorGenero (int idGenero) {
+            using (OpFlixContext ctx = new OpFlixContext()) {
+                return ctx.Lancamentos.Include(x => x.IdCategoriaNavigation).Where(x => x.IdCategoria == idGenero).ToList();
+            }
+
         }
     }
 }

@@ -74,6 +74,12 @@ namespace Senai.OpFlix.WebApi.Controllers {
             return Ok(lancamentoRepository.BuscarPorId(id));
         }
 
+        [HttpGet("genero/{id}")]
+        public IActionResult BuscarLancamentoPorGenero (int id) {
+            return Ok(lancamentoRepository.BuscarPorGenero(id));
+        }
+
+
         [HttpGet("data/{ano}")]
         public IActionResult FiltrarPorData (int ano) {
             try {
@@ -91,6 +97,11 @@ namespace Senai.OpFlix.WebApi.Controllers {
             } catch (Exception ex) {
                 return BadRequest(ex.Message);
             }
+        }
+
+        [HttpGet("recentes")]
+        public IEnumerable<Lancamentos> MaisRecentes () {
+            return lancamentoRepository.MaisRecentes();
         }
     }
 }
