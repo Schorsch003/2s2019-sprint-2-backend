@@ -90,10 +90,10 @@ namespace Senai.OpFlix.WebApi.Repositories {
             List<Lancamentos> lista = new List<Lancamentos>();
             using (SqlConnection con = new SqlConnection("Data Source=.\\SqlExpress;Initial Catalog=T_OpFlix;User Id=sa;Pwd=132")) {
                 con.Open();
-                string query = "Select L.IdLancamento,L.Titulo,L.Sinopse,L.TempoDuracao,L.IdTipo,L.IdCategoria, L.Plataforma, P.Nome,C.Nome as Cat" +
+                string query = "Select L.DataLancamento, L.IdLancamento,L.Titulo,L.Sinopse,L.TempoDuracao,L.IdTipo,L.IdCategoria, L.Plataforma, L.Imagem,P.Nome as Plat,C.Nome as Cat,T.Nome as Tipo" +
                     " From LancamentosFavoritos Join Usuarios U on LancamentosFavoritos.IdUsuario = U.IdUsuario" +
                     " Join Lancamentos L on L.IdLancamento = LancamentosFavoritos.IdLancamento Join Categoria C on C.IdCategoria = L.IdCategoria " +
-                    "Join Plataformas P on  P.IdPlataforma = L.Plataforma Where LancamentosFavoritos.IdUsuario =  @Id";
+                    "Join Plataformas P on  P.IdPlataforma = L.Plataforma Join Tipo T on T.IdTipo = L.IdTipo Where LancamentosFavoritos.IdUsuario =  @Id";
                 SqlDataReader sdr;
 
                 using (SqlCommand cmd = new SqlCommand(query , con)) {
@@ -112,14 +112,18 @@ namespace Senai.OpFlix.WebApi.Repositories {
                                 IdCategoriaNavigation = new Categoria {
                                     IdCategoria = Convert.ToInt32(sdr["IdCategoria"]) ,
                                     Nome = sdr["Cat"].ToString() ,
-                                    Lancamentos = null
                                 } ,
                                 PlataformaNavigation = new Plataformas {
                                     IdPlataforma = Convert.ToInt32(sdr["Plataforma"]) ,
-                                    Nome = sdr["Nome"].ToString(),
-                                    Lancamentos = null
+                                    Nome = sdr["Plat"].ToString() ,
 
-                                }
+                                } ,
+                                DataLancamento = Convert.ToDateTime(sdr["DataLancamento"]) ,
+                                IdTipoNavigation = new Tipo(){
+                                    IdTipo = Convert.ToInt32(sdr["IdTipo"]) ,
+                                    Nome = sdr["Tipo"].ToString() ,
+                                } ,
+                                Imagem = sdr["Imagem"].ToString()
                             };
                             lista.Add(l);
                         }
